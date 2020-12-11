@@ -5,9 +5,9 @@ Projeto desenvolvido para testar biblioteca [TestContainers](https://www.testcon
 
 Ter o docker instalado na máquina
 
-## Testes
+## Testes unitário e integração
 
-Para executar testes de integração com Testcontainers, execute:
+Para executar testes com Testcontainers, execute:
 
 ```
 ./mvnw test
