@@ -38,16 +38,10 @@ class PocTestcontainerApplicationTests {
 
     protected static MongoDbContainer mongoDbContainer;
 
-    @ClassRule
-    public static GenericContainer mongo = new GenericContainer("mongo:4.2")
-            .withExposedPorts(27017);
-
-
     @BeforeAll
     public static void setup(){
         mongoDbContainer = new MongoDbContainer();
         mongoDbContainer.start();
-
     }
 
     @Test
