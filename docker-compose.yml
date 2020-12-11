@@ -1,15 +1,20 @@
 #Versão docker-compose
 version: "3.7"
 
-#especificar containers
+#especificar containers que serao utilizados
 services:
 
+  #nome para identificar o serviço(container)
   db:
+    #nome da imagem docker hub
     image: mongo
+    #nome que será dado ao container
     container_name: mongo-container
+    #declaração de volumes utilizado pelo container
     volumes:
       - /db/data:/data/db
     restart: always
+    #bind de portas
     ports:
       - "27017:27017"
 
@@ -17,10 +22,12 @@ services:
     image: jonathasgarcia/poc-testcontainer
     container_name: poc-test-container
     restart: always
+    #Especifica que o serviço "db" é acessável pelo serviço "poc" através do alias mongo-container(que é utilizado para comunicação no application.properties)
     links:
       - "db:mongo-container"
     ports:
       - "8080:8080"
+    #Especifica que a aplicação depende do serviço db, ou seja, db sobe primeiro
     depends_on:
       - db
 
