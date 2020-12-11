@@ -30,13 +30,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
-@ContextConfiguration(initializers = PocTestcontainerApplicationTests.MongoDbInitializer.class)
+@ContextConfiguration(initializers = MongoDbContextInitializer.class)
 class PocTestcontainerApplicationTests {
 
     @Autowired
     private MockMvc mockMvc;
 
-    private static MongoDbContainer mongoDbContainer;
+    protected static MongoDbContainer mongoDbContainer;
 
     @ClassRule
     public static GenericContainer mongo = new GenericContainer("mongo:4.2")
@@ -73,18 +73,4 @@ class PocTestcontainerApplicationTests {
 
     }
 
-    public static class MongoDbInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        @Override
-        public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
-
-
-            TestPropertyValues values = TestPropertyValues.of(
-                    "spring.data.mongodb.host=" + mongoDbContainer.getContainerIpAddress(),
-                    "spring.data.mongodb.port=" + mongoDbContainer.getPort()
-//                    "spring.data.mongodb.uri=mongodb://" + mongoDbContainer.getContainerIpAddress() + "/testes"
-
-            );
-            values.applyTo(configurableApplicationContext);
-        }
-    }
 }
