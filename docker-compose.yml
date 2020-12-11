@@ -1,0 +1,27 @@
+#Versão docker-compose
+version: "3.7"
+
+#especificar containers
+services:
+
+  db:
+    image: mongo
+    container_name: mongo-container
+    volumes:
+      - home/db/data:/data/db
+    restart: always
+    ports:
+      - "27017:27017"
+
+  poc:
+    image: jonathasgarcia/poc-testcontainer:latest
+    container_name: poc-test-container
+    restart: always
+    links:
+      - "db:mongo-container"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+
