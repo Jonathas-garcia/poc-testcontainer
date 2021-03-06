@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.testcontainers.containers.GenericContainer;
 
 
+import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -65,6 +66,11 @@ class PocTestcontainerApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].texto", Matchers.is("Teste")));
 
+    }
+
+    @Test
+    void test2() {
+        assertTrue(true);
     }
 
 }
