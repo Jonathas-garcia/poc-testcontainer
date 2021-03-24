@@ -69,10 +69,4 @@ class PocTestcontainerApplicationTests {
 
     }
 
-    @Test
-    void test2() {
-        assertTrue(true);
-        assertFalse(false);
-    }
-
 }
